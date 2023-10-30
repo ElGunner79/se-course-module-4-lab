@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Module 4/Lab 2/Exercise 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+        }
+
+        .card {
+            background-color: #427bc4;
+            border: 1px solid #dddddd;
+            padding: 20px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <template id="artist-template">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"></div>
+                <div class="portfolio-items"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="portfolio-template">
+        <div class="portfolio-item">
+            <div class="portfolio-item-title"></div>
+            <img class="portfolio-item-image" width="600" />
+        </div>
+    </template>
+
+    <h1>Module 4/Lab 2/Exercise 3</h1>
+
+    <div id="card-list"></div>
+    <script>
+        //Part 1:
+        const artist = {
+            name: "Van Gogh",
+            portfolio: [
+                { title: "Portrait", url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image" },
+                { title: "Sky", url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg" },
+            ]
+        }
+
+        //Part 2:
+        const artists = [
+            {
+                name: "Claude Monet",
+                portfolio: [
+                    { title: "The Artist's Garden at Giverny", url: "https://www.claude-monet.com/images/paintings/the-artists-garden-at-giverny.jpg" },
+                    { title: "San Giorgio Maggiore at Dusk", url: "https://www.claude-monet.com/images/paintings/san-giorgio-maggiore-at-dusk.jpg" },
+                ]
+            },
+            {
+                name: "Salvador Dali",
+                portfolio: [
+                    { title: "The Persistence of Memory", url: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/The_Persistence_of_Memory.jpg/300px-The_Persistence_of_Memory.jpg" },
+                    { title: "The Temptation of St. Anthony", url: "https://upload.wikimedia.org/wikipedia/en/c/c0/The_Temptation_of_St._Anthony.jpg" },
+                ]
+            }
+        ]
+
+        function addArtist(name, portfolio) {
+            // cloned the template
+            const template = document.getElementById("artist-template").content.cloneNode(true);
+
+            // populated the template
+            template.querySelector('.card-title').innerText = name;
+
+            portfolio.forEach(item => {
+                const itemTemplate = document.getElementById("portfolio-template").content.cloneNode(true);
+                itemTemplate.querySelector('.portfolio-item-title').innerText = item.title;
+                itemTemplate.querySelector('.portfolio-item-image').src = item.url;
+                itemTemplate.querySelector('.portfolio-item-image').alt = item.title;
+                template.querySelector('.portfolio-items').appendChild(itemTemplate);
+            })
+
+            // included the populated template into the page
+            document.querySelector('#card-list').appendChild(template);
+        }
+
+        // Called Part 1
+        addArtist(artist.name, artist.portfolio);
+
+        //Called Part 2
+        artists.forEach(artist => addArtist(artist.name, artist.portfolio))
+    </script>
+</body>
+
+</html>
