@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m4-lab-7-CSS-animation</title>
+    <style>
+        #animatedBox {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            animation-timing-function: linear;
+            animation-name: slide;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes slide {
+            from {
+                top: 100px;
+                background: red;
+                box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
+            }
+            50% {
+                border-radius: 50px;
+                background: yellow;
+            }
+
+            to {
+                top: 300px;
+                background: blue;
+                box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="animatedBox"></div>
+</body>
+
+</html>

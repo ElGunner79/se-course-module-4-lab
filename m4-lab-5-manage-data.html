@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<template id="news-template">
+    <div class="card col-4">
+        <div class="card-body">
+            <h5 class="card-title">News title</h5>
+            <p class="card-text">News body</p>
+        </div>
+    </div>
+</template>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>m4-lab-5-manage-data</title>
+</head>
+
+<body>
+    <div class="container p-3">
+        <h2>BREAKING SPORTS NEWS</h2>
+        <div id="news-list" class="row g-3 p-3"></div>
+
+        <!-- Part 2 extension: Stop interval button -->
+        <div><button onclick="stopInterval()">STOP RELOADING</button></div>
+
+        <!-- Part 2: Form to create new news item -->
+        <form onsubmit="createNewsItem(event)">
+            <label>NEWS ITEM TITLE: <input name="title" id="newsTitle"></label><br>
+            <label>NEWS ITEM CONTENT: <input name="content" id="newsContent"></label>
+            <button>SUBMIT NEWS ITEM</button>
+        </form>
+    </div>
+
+    <script>
+
+        let news = [
+            {
+                id: 1, title: 'MAN U LOSE AGAIN',
+                content: "Erik Ten Hag is facing the chop..."
+            },
+            {
+                id: 2, title: 'SOUTH AFRICA BOWL THE KIWIS OVER',
+                content: "New Zealand got hammered by South Africa..."
+            },
+            {
+                id: 3, title: 'MATILDAS GET A CLEAN SWEEP IN PERTH',
+                content: "The Matildas make it 3 out of 3 for the Olimpic qualifiers..."
+            }
+        ];
+
+        function getNews() {
+            //Clear out previous news items
+            document.getElementById('news-list').innerText = '';
+
+            news.forEach(item => addNewsItem(item))
+        }
+
+        //Clone, populate, then append a new template
+        function addNewsItem(news) {
+            const template = document.getElementById("news-template").content.cloneNode(true);
+            template.querySelector('.card-title').innerText = news.title;
+            template.querySelector('.card-text').innerText = news.content;
+            document.querySelector('#news-list').appendChild(template);
+        }
+
+        //Load news initially
+        getNews();
+
+        //Reload news every 5 seconds
+        let newsTimer = setInterval(getNews, 5000);
+
+        //Part 2: Add new news item
+        function createNewsItem(event) {
+            event.preventDefault();
+            let newTitle = document.getElementById('newsTitle').value;
+            let newContent = document.getElementById('newsContent').value;
+            news.push({title: newTitle, content: newContent, id: news.length + 1})
+        }
+
+        function stopInterval() {
+            clearInterval(newsTimer)
+        }
+    </script>
+</body>
+
+</html>

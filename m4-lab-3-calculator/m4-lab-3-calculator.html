@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m4-lab-3-calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="calculator">
+        <div id="result"></div>
+        <div id="buttons">
+            <button class="button" onclick="clickNumber(1)">1</button>
+            <button class="button" onclick="clickNumber(2)">2</button>
+            <button class="button" onclick="clickNumber(3)">3</button>
+            <button class="button operator" onclick="clickOperator('+')">+</button>
+
+            <button class="button" onclick="clickNumber(4)">4</button>
+            <button class="button" onclick="clickNumber(5)">5</button>
+            <button class="button" onclick="clickNumber(6)">6</button>
+            <button class="button operator" onclick="clickOperator('-')">-</button>
+
+            <button class="button" onclick="clickNumber(7)">7</button>
+            <button class="button" onclick="clickNumber(8)">8</button>
+            <button class="button" onclick="clickNumber(9)">9</button>
+            <button class="button operator" onclick="clickOperator('*')">x</button>
+
+            <button class="button" onclick="clickNumber(0)">0</button>
+            <button class="button operator" onclick="calculateResult()">=</button>
+            <button class="button operator" onclick="clearResult()">C</button>
+            <button class="button operator" onclick="clickOperator('/')">/</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="calculator.js"></script>
+</body>
+
+</html>
